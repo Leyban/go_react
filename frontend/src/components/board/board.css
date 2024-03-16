@@ -1,0 +1,33 @@
+#board {
+    display: flex;
+    flex: 1 0 auto;
+    padding: 0 20px;
+    gap: 20px;
+    background-color: #21212d;
+}
+
+.dark #board .new_column {
+    background-color: #23232F;
+}
+
+#board .new_column {
+    width: 18rem;
+    margin-top: 75px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+#board .new_column h2 {
+    color: #AAA;
+    padding: 20px;
+    transition: 0.4s;
+}
+
+#board .new_column:hover h2 {
+    color: #635fc7;
+}
+

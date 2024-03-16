@@ -1,26 +1,31 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"net/http"
 )
 
 func main() {
-	fs := http.FileServer(http.Dir("./../frontend/dist"))
-	http.Handle("/", fs)
-
-	http.HandleFunc("/api/data", dataHandler)
+	mux := newMux()
 
 	fmt.Println("Listening at port 8888")
-	http.ListenAndServe(":8888", nil)
+	http.ListenAndServe(":8888", mux)
 }
 
-type ApiResponse struct {
-	Message string `json:"message"`
-}
+func newMux() *http.ServeMux {
+	mux := http.NewServeMux()
 
-func dataHandler(w http.ResponseWriter, r *http.Request) {
-	response := ApiResponse{Message: "Hello from the Golang API!"}
-	json.NewEncoder(w).Encode(response)
+	fs := http.FileServer(http.Dir("./../frontend/dist"))
+	mux.Handle("/", fs)
+
+	mux.HandleFunc("GET /api/test/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprint(w, "He mad bro")
+	})
+
+	mux.HandleFunc("GET /api/test/{id}", func(w http.ResponseWriter, r *http.Request) {
+		id := r.PathValue("id")
+		fmt.Fprintf(w, "The id is: %s", id)
+	})
+
+	return mux
 }

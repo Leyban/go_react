@@ -1,0 +1,32 @@
+#board .column .task {
+    background-color: green;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 20px 0;
+    position: relative;
+}
+
+#board .column .task.dragover::before {
+    content: "";
+    position: absolute;
+    background-color: #635fc7;
+    height: 5px;
+    width: 100%;
+    top: -12px;
+    left: 0;
+    border-radius: 3px;
+}
+
+.dark #board .column .task {
+    background-color: #2b2c37;
+    box-shadow: 0 4px 6px #232534;
+}
+
+#board .column .task h4 {
+    margin: 0;
+}
+
+#board .column .task p {
+    margin: 0;
+    font-size: 12px;
+}

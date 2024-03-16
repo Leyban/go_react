@@ -1,0 +1,43 @@
+.dark #header {
+    background-color: #2B2C37;
+}
+.light #header {
+    background-color: #FFF;
+}
+
+#header {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.4s;
+}
+
+.light #header .title {
+    color: #222;
+}
+#header .title {
+    padding-left: 30px;
+}
+
+#header .buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#header .buttons .add_new {
+    border: none;
+    width: 170px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: #635FC7;
+    font-family: "Plus Jakarta Sans", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#header .buttons img {
+    padding: 20px;
+    cursor: pointer;
+}

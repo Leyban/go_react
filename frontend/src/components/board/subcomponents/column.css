@@ -1,0 +1,19 @@
+#board .column {
+    width: 18rem;
+}
+
+#board .column .status {
+    height: 25px;
+    margin: 25px 0;
+}
+
+#board .column.dragover .task:last-child::after {
+    content: "";
+    position: absolute;
+    background-color: #635fc7;
+    height: 5px;
+    width: 100%;
+    bottom: -12px;
+    left: 0;
+    border-radius: 3px;
+}

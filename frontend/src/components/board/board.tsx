@@ -2,11 +2,8 @@ import { DndContext, DragEndEvent, PointerSensor, useSensor, useSensors } from "
 import Column, { TColumn } from "./subcomponents/column";
 import _ from "lodash"
 import "./board.css"
-import { useState } from "react";
 
 export default function Board({ columns }: { columns: TColumn[] }) {
-    const [loading, setLoading] = useState(false)
-
     const sensors = useSensors(
         useSensor(PointerSensor, {
             activationConstraint: {
@@ -25,7 +22,6 @@ export default function Board({ columns }: { columns: TColumn[] }) {
 
         // Find old status index
         const oldStatusIndex = columns.findIndex(status => status.id === e.active.data.current?.status);
-        const oldColumnTaskCopy = [...columns[oldStatusIndex].tasks]
 
         // Find the index of the task with id within the old status column
         const taskIndex = columns[oldStatusIndex].tasks.findIndex(task => task.id === e.active.id);
@@ -38,18 +34,11 @@ export default function Board({ columns }: { columns: TColumn[] }) {
 
         // Find new status index
         const newStatusIndex = columns.findIndex(status => status.id === removedTask.status);
-        const newColumnTasksCopy = [...columns[newStatusIndex].tasks]
 
         // Add the removed task to the new status
         columns[newStatusIndex].tasks.push(removedTask);
 
         // Call Api
-        setLoading(true)
-        setTimeout(() => {
-            columns[oldStatusIndex].tasks = oldColumnTaskCopy
-            columns[newStatusIndex].tasks = newColumnTasksCopy
-            setLoading(false)
-        }, 2000)
     }
 
     return (
